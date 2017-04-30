@@ -89,7 +89,7 @@ echo ">> service start"
 
 echo
 echo ">> create database (root authority)"
-# mysql --user=root -p < $INST_SQL_PATH
+mysql --user=root -p < $INST_SQL_PATH
 
 echo
 echo ">> chkconfig xvfb on"
