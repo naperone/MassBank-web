@@ -1,0 +1,6 @@
+./Tomcat/webapps/ROOT/WEB-INF/src/massbank/svn/svn.info
+*~
+.DS_Store
+.vagrant/
+.gitignore
+./password.sh
