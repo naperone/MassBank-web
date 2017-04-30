@@ -122,15 +122,15 @@ echo ">> create database (root authority)"
 cat >~/.my.cnf <<EOF
 [client]
 user=root
-password="bird2006"
+password="$PW"
 
 [mysql]
 user=root
-password="bird2006"
+password="$PW"
 EOF
 
-# mysql --user=root  < $INST_SQL_PATH
-echo $(cat $INST_SQL_PATH)" GRANT ALL PRIVILEGES ON *.* TO bird@localhost IDENTIFIED BY 'bird2006' WITH GRANT OPTION;" | mysql --user=root
+mysql --user=root  < $INST_SQL_PATH
+# echo $(cat $INST_SQL_PATH)" GRANT ALL PRIVILEGES ON *.* TO bird@localhost IDENTIFIED BY 'bird2006' WITH GRANT OPTION;" | mysql --user=root
 
 #echo
 #echo ">> chkconfig xvfb on"
