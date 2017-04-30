@@ -59,7 +59,7 @@ a2enmod cgid
 a2enmod jk
 
 ## mbadmin password
-htpasswd -c $INST_CONF_PATH/.htpasswd -c massbank $PW
+htpasswd -b -c /etc/apache2/.htpasswd massbank $PW
 
 cp -p $INST_CONF_PATH/010-a2site-massbank.conf $APACHE_CONF_PATH/sites-available
 a2ensite 010-a2site-massbank
