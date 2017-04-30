@@ -130,7 +130,8 @@ password="$PW"
 EOF
 
 # mysql --user=root  < $INST_SQL_PATH
-echo $(cat $INST_SQL_PATH)" GRANT ALL PRIVILEGES ON *.* TO bird@localhost IDENTIFIED BY 'bird2006' WITH GRANT OPTION;" | mysql --user=root
+# echo $(cat $INST_SQL_PATH)" GRANT ALL PRIVILEGES ON *.* TO bird@localhost IDENTIFIED BY 'bird2006' WITH GRANT OPTION;" | mysql --user=root
+printf "$(cat $INST_SQL_PATH)\n\nGRANT ALL PRIVILEGES ON *.* TO bird@localhost IDENTIFIED BY 'bird2006' WITH GRANT OPTION;\n" | mysql --user=root
 
 #echo
 #echo ">> chkconfig xvfb on"
