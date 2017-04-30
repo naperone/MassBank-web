@@ -11,6 +11,10 @@ echo "*  version 1.8.1                            *"
 echo "*********************************************"
 echo
 
+# Get Password
+
+source ./modules/password.sh
+
 # Install Files Path
 INST_ROOT_PATH=./modules
 INST_HTDOCS_PATH=$INST_ROOT_PATH/apache/htdocs
@@ -55,7 +59,7 @@ a2enmod cgid
 a2enmod jk
 
 ## mbadmin password
-htpasswd -c $INST_CONF_PATH/.htpasswd -c massbank bird2006
+htpasswd -c $INST_CONF_PATH/.htpasswd -c massbank $PW
 
 cp -p $INST_CONF_PATH/010-a2site-massbank.conf $APACHE_CONF_PATH/sites-available
 a2ensite 010-a2site-massbank
@@ -118,14 +122,15 @@ echo ">> create database (root authority)"
 cat >~/.my.cnf <<EOF
 [client]
 user=root
-password="bird2006"
+password="$PW"
 
 [mysql]
 user=root
-password="bird2006"
+password="$PW"
 EOF
 
-mysql --user=root  < $INST_SQL_PATH
+#mysql --user=root  < $INST_SQL_PATH
+# echo $(cat $INST_SQL_PATH)" GRANT ALL PRIVILEGES ON *.* TO bird@localhost IDENTIFIED BY 'bird2006' WITH GRANT OPTION;" | mysql --user=root
 
 #echo
 #echo ">> chkconfig xvfb on"

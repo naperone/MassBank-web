@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /vagrant/password.sh
+
 # install a MassBank Dev machine
 export DEBIAN_FRONTEND=noninteractive
 
@@ -59,9 +61,10 @@ a2enmod cgi
 
 # install mysql and java and perl clients
 # ATTENTION: CUSTOMISE THE MYSQL PASSWORD FOR YOUR OWN INSTALLATION !!!
-debconf-set-selections <<< 'mysql-server mysql-server/root_password password bird2006'
-debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password bird2006'
-
+# debconf-set-selections <<< 'mysql-server mysql-server/root_password password bird2006'
+# debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password bird2006'
+debconf-set-selections <<< "mysql-server mysql-server/root_password password $PW"
+debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $PW"
 apt-get install -y mysql-server mysql-client libdbd-mysql-perl
 
 # clean environment
