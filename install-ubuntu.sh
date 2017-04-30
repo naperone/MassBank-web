@@ -122,11 +122,11 @@ echo ">> create database (root authority)"
 cat >~/.my.cnf <<EOF
 [client]
 user=root
-password="$PW"
+password="bird2006"
 
 [mysql]
 user=root
-password="$PW"
+password="bird2006"
 EOF
 
 mysql --user=root  < $INST_SQL_PATH
