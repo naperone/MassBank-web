@@ -13,7 +13,7 @@ echo
 
 # Get Password
 
-source ./modules/password.sh
+source /vagrant/password.sh
 
 # Install Files Path
 INST_ROOT_PATH=./modules
@@ -129,8 +129,8 @@ user=root
 password="$PW"
 EOF
 
-#mysql --user=root  < $INST_SQL_PATH
-# echo $(cat $INST_SQL_PATH)" GRANT ALL PRIVILEGES ON *.* TO bird@localhost IDENTIFIED BY 'bird2006' WITH GRANT OPTION;" | mysql --user=root
+# mysql --user=root  < $INST_SQL_PATH
+echo $(cat $INST_SQL_PATH)" GRANT ALL PRIVILEGES ON *.* TO bird@localhost IDENTIFIED BY 'bird2006' WITH GRANT OPTION;" | mysql --user=root
 
 #echo
 #echo ">> chkconfig xvfb on"
