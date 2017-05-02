@@ -54,8 +54,21 @@ while ( <F> ) {
 	$Host .= $_;
 }
 $DB = "DBI:mysql:$DbName:$Host";
-$User = 'bird';
-$PassWord = 'bird2006';
+open(F, "/vagrant/password.sh");
+@foo = grep(/USER/,<F>);
+close(F);
+foreach (@foo) {
+ 	chomp;
+	$User = ((split("="))[1]);
+}
+
+open(F, "/vagrant/password.sh");
+@foo = grep(/PW/,<F>);
+close(F);
+foreach (@foo) {
+	chomp;
+	$PassWord = ((split("="))[1]);
+}
 
 $MolDir = "../DB/molfile/$DbName";
 $GifDir = "../DB/gif/$DbName";
