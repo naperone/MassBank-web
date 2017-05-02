@@ -40,8 +40,21 @@ while ( <F> ) {
 }
 
 $DB = "DBI:mysql:$db_name:$host_name";
-$User = 'bird';
-$PassWord = 'bird2006';
+open(F, "/vagrant/password.sh");
+@foo = grep(/USER/,<F>);
+close(F);
+foreach (@foo) {
+ 	chomp;
+	$User = ((split("="))[1]);
+}
+
+open(F, "/vagrant/password.sh");
+@foo = grep(/PW/,<F>);
+close(F);
+foreach (@foo) {
+	chomp;
+	$PassWord = ((split("="))[1]);
+}
 $dbh  = DBI->connect($DB, $User, $PassWord) || die "connect error \n";
 
 print "Content-Type: text/plain\n\n";

@@ -102,8 +102,21 @@ if ( open(F, $BASE_PATH . "SOCKET_PORT") ) {
 # DB接続
 #------------------------------------------------
 my $DB = "DBI:mysql:$db_name:$host_name";
-my $User = 'bird';
-my $PassWord = 'bird2006';
+open(F, "/vagrant/password.sh");
+@foo = grep(/USER/,<F>);
+close(F);
+foreach (@foo) {
+ 	chomp;
+	$User = ((split("="))[1]);
+}
+
+open(F, "/vagrant/password.sh");
+@foo = grep(/PW/,<F>);
+close(F);
+foreach (@foo) {
+	chomp;
+	$PassWord = ((split("="))[1]);
+}
 my $dbh = DBI->connect($DB, $User, $PassWord) or die "DB connect error \n";
 
 #------------------------------------------------
