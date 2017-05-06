@@ -73,6 +73,9 @@ echo "Compile Search.cgi"
 (cd ./Apache/cgi-bin/Search.cgi/ ; make clean ; make ) 
 cp -p ./Apache/cgi-bin/Search.cgi/Search.cgi $APACHE_HTDOCS_PATH/MassBank/cgi-bin/
 
+echo
+echo "Create Credentials.pm"
+bash ./CreateCredentialsPm.sh > $APACHE_HTDOCS_PATH/MassBank/cgi-bin/Credentials.pm
 
 #cp -ip $INST_ROOT_PATH/StartupScript/tomcat /etc/init.d
 cp -p $INST_ROOT_PATH/StartupScript/xvfb /etc/init.d
