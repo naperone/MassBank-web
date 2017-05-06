@@ -25,6 +25,8 @@
 #
 #-------------------------------------------------------------------------------
 use CGI;
+use lib '/vagrant/modules/apache/htdocs/MassBank/cgi-bin/';
+use Credentials;
 use DBI;
 
 print "Content-Type: text/plain\n\n";
@@ -54,21 +56,11 @@ while ( <F> ) {
 	$Host .= $_;
 }
 $DB = "DBI:mysql:$DbName:$Host";
-open(F, "/vagrant/password.sh");
-@foo = grep(/USER/,<F>);
-close(F);
-foreach (@foo) {
- 	chomp;
-	$User = ((split("="))[1]);
-}
 
-open(F, "/vagrant/password.sh");
-@foo = grep(/PW/,<F>);
-close(F);
-foreach (@foo) {
-	chomp;
-	$PassWord = ((split("="))[1]);
-}
+%credentials = getCredentials();
+$User = $credentials{User};
+$PassWord = $credentials{PassWord};
+
 
 $MolDir = "../DB/molfile/$DbName";
 $GifDir = "../DB/gif/$DbName";
