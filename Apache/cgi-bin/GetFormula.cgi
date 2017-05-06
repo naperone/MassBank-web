@@ -26,6 +26,8 @@
 #-------------------------------------------------------------------------------
 use DBI;
 use CGI;
+use lib '/vagrant/modules/apache/htdocs/MassBank/cgi-bin/';
+use Credentials;
 
 my $query = new CGI;
 my $ids = $query->param('id');
@@ -37,21 +39,11 @@ if ( $db_name eq '' ) {
 print "Content-Type: text/plain\n\n";
 
 my $SQLDB = "DBI:mysql:$db_name:$host_name";
-open(F, "/vagrant/password.sh");
-@foo = grep(/USER/,<F>);
-close(F);
-foreach (@foo) {
- 	chomp;
-	$User = ((split("="))[1]);
-}
 
-open(F, "/vagrant/password.sh");
-@foo = grep(/PW/,<F>);
-close(F);
-foreach (@foo) {
-	chomp;
-	$PassWord = ((split("="))[1]);
-}
+%credentials = getCredentials();
+$User = $credentials{User};
+$PassWord = $credentials{PassWord};
+
 my $dbh  = DBI->connect($SQLDB, $User, $PassWord) || exit(0);
 
 @id_list = split( ',', $ids );
