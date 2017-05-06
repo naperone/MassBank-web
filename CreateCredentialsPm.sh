@@ -24,7 +24,7 @@ sub getCredentials {
 \t\tchomp;
 \t\t\$PassWord = ((split(\"=\"))[1]);
 \t}
-\t%%res = (\"PassWord\",\$PassWord,\"User\",\$User);
+\tmy %%res = (\"PassWord\",\$PassWord,\"User\",\$User);
 \treturn %%res;
 }
 

@@ -25,7 +25,8 @@
 #
 #-------------------------------------------------------------------------------
 use CGI;
-use lib '/vagrant/modules/apache/htdocs/MassBank/cgi-bin/';
+use File::Basename;
+use lib dirname (__FILE__);
 use Credentials;
 use DBI;
 
@@ -47,27 +48,9 @@ print "Content-Type: text/plain\n\n";
 
 $SQLDB = "DBI:mysql:$db_name:$host_name";
 
-# open(F, "/vagrant/password.sh");
-# @foo = grep(/USER/,<F>);
-# close(F);
-# foreach (@foo) {
-#  	chomp;
-# 	$User = ((split("="))[1]);
-# }
-
-# open(F, "/vagrant/password.sh");
-# @foo = grep(/PW/,<F>);
-# close(F);
-# foreach (@foo) {
-# 	chomp;
-# 	$PassWord = ((split("="))[1]);
-# }
-
-
 %credentials = getCredentials();
 $User = $credentials{User};
 $PassWord = $credentials{PassWord};
-
 
 $dbh  = DBI->connect($SQLDB, $User, $PassWord) || exit(0);
 @ans = &MySql("select MZ, INTENSITY, RELATIVE from PEAK where ID='$id' order by MZ");
