@@ -59,7 +59,8 @@
 );
 
 use CGI;
-use lib '/vagrant/modules/apache/htdocs/MassBank/cgi-bin/';
+use File::Basename;
+use lib dirname (__FILE__);
 use Credentials;
 use DBI;
 
