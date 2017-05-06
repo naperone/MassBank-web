@@ -86,6 +86,7 @@ echo
 echo ">> change file mode"
 chmod a+x $APACHE_HTDOCS_PATH/MassBank/cgi-bin/*.cgi
 chmod a+x $APACHE_HTDOCS_PATH/MassBank/cgi-bin/*/*.pl
+chmod a+x $APACHE_HTDOCS_PATH/MassBank/cgi-bin/*.pm
 chmod 755 $APACHE_HTDOCS_PATH/MassBank/script/*.pl
 chmod 777 $APACHE_HTDOCS_PATH/MassBank/StructureSearch/struct.dat
 chmod 755 $APACHE_HTDOCS_PATH/MassBank/StructureSearch/struct_server
